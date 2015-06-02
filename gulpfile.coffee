@@ -14,6 +14,14 @@ gulp.task 'sass', ->
 			errLogToConsole: true
 		.pipe gulp.dest "./app/public/css/"
 
+gulp.task 'jade', ['jade:index', 'jade:components', 'jade:view']
+
+gulp.task 'jade:index', ->
+	gulp.src "./app/src/jade/index.jade"
+		.pipe jade
+			pretty: true
+		.pipe gulp.dest "./app/public/"
+
 gulp.task 'jade:components', ->
 	gulp.src "./app/src/jade/components/**/*.jade"
 		.pipe jade
@@ -21,7 +29,7 @@ gulp.task 'jade:components', ->
 		.pipe gulp.dest "./app/public/html/components"
 
 gulp.task 'jade:view', ->
-	gulp.src "./app/src/jade/view/**/*.jade
+	gulp.src "./app/src/jade/view/**/*.jade"
 		.pipe jade
 			pretty: true
 		.pipe gulp.dest "./app/public/html/view"
@@ -36,9 +44,11 @@ gulp.task 'vendor', ['vendor:js', 'vendor:components']
 
 gulp.task 'vendor:js', ->
 	gulp.src [
-		"./bower_components/webcomponents/webcomponents.min.js"
+		"./bower_components/webcomponentsjs/webcomponents.min.js"
 	]
 		.pipe concat "vendor.js"
 		.pipe gulp.dest "./app/public/js/"
 
 gulp.task 'vendor:components', ->
+	gulp.src "./bower_components/polymer/polymer.html"
+		.pipe gulp.dest "./app/public/html/components"
