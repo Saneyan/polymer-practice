@@ -44,11 +44,11 @@ gulp.task 'vendor', ['vendor:js', 'vendor:components']
 
 gulp.task 'vendor:js', ->
 	gulp.src [
-		"./bower_components/webcomponentsjs/webcomponents.min.js"
+		"./bower_components/webcomponentsjs/webcomponents-lite.min.js"
 	]
 		.pipe concat "vendor.js"
 		.pipe gulp.dest "./app/public/js/"
 
 gulp.task 'vendor:components', ->
-	gulp.src "./bower_components/polymer/polymer.html"
+	gulp.src "./bower_components/polymer/*.html"
 		.pipe gulp.dest "./app/public/html/components"
